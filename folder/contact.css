@@ -1,0 +1,34 @@
+/* Include the same :root, body, Ambient Background Glows, and .nav styles here! */
+:root { --primary-glow: #8a2be2; --secondary-glow: #00d2ff; --text-main: #ffffff; --text-muted: #a0a5ba; --glass-bg: rgba(255, 255, 255, 0.05); --glass-border: rgba(255, 255, 255, 0.1); }
+body { margin: 0; background-color: #05050a; color: var(--text-main); font-family: 'Segoe UI', Roboto, Arial, sans-serif; min-height: 100vh; overflow-x: hidden; position: relative; }
+body::before, body::after { content: ''; position: fixed; width: 50vw; height: 50vw; border-radius: 50%; filter: blur(150px); z-index: -1; animation: float 10s ease-in-out infinite alternate; }
+body::before { background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%); top: -20%; left: -10%; opacity: 0.4; }
+body::after { background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%); bottom: -20%; right: -10%; opacity: 0.3; animation-delay: -5s; }
+@keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(30px, 50px) scale(1.1); } }
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 30px 60px; }
+.logo { font-size: 20px; font-weight: bold; letter-spacing: 1px; }
+.links a { color: var(--text-muted); text-decoration: none; font-size: 15px; font-weight: 500; margin-left: 30px; transition: all 0.3s ease; position: relative; }
+.links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: linear-gradient(90deg, var(--secondary-glow), var(--primary-glow)); transition: width 0.3s ease; }
+.links a:hover { color: var(--text-main); } .links a:hover::after { width: 100%; }
+
+/* Contact Specifics */
+.glass-panel { background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 30px; box-shadow: 0 25px 45px rgba(0,0,0,0.2); }
+
+.form { display: flex; flex-direction: column; width: 100%; max-width: 450px; margin: 60px auto; padding: 50px; }
+.form h2 { margin-top: 0; text-align: center; margin-bottom: 30px; font-weight: 400; letter-spacing: 1px; }
+
+.box {
+  margin-bottom: 20px; padding: 15px 20px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border);
+  border-radius: 10px; color: white; font-size: 15px; outline: none; transition: all 0.3s ease; font-family: inherit;
+}
+.box::placeholder { color: rgba(255, 255, 255, 0.3); }
+.box:focus { border-color: var(--secondary-glow); background: rgba(255, 255, 255, 0.08); box-shadow: 0 0 15px rgba(0, 210, 255, 0.1); }
+.textarea { resize: none; }
+
+.btn {
+  margin-top: 10px; padding: 15px; background: transparent; color: var(--text-main); border-radius: 50px;
+  font-size: 16px; font-weight: 600; border: 2px solid transparent; cursor: pointer;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(90deg, var(--primary-glow), var(--secondary-glow));
+  background-origin: border-box; background-clip: padding-box, border-box; transition: all 0.4s ease;
+}
+.btn:hover { background-image: linear-gradient(90deg, var(--primary-glow), var(--secondary-glow)), linear-gradient(90deg, var(--primary-glow), var(--secondary-glow)); box-shadow: 0 0 30px rgba(0, 210, 255, 0.4); transform: translateY(-2px); }
